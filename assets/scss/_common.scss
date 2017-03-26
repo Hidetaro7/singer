@@ -1,0 +1,202 @@
+
+
+// commons ==============================
+
+$pink: #E26580;
+$bdc: #ccc;
+$alert: #B41419;
+$rec_btn: #DD271A;
+$video_width: 800px;
+$font_family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+
+@mixin cf {
+	&::after {
+		display: block;
+		content: "";
+		clear: both;
+	}
+}
+
+@mixin fb ($a:space-between, $b:center) {
+	display: flex;
+	justify-content: $a;
+	align-items: $b;
+	flex-wrap: wrap;
+	
+}
+
+
+* {
+	box-sizing: border-box;
+}
+
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	position: relative;
+}
+/* h1,h2,h3,h4,h5,h6{
+	font-size: 100%;
+} */
+img, video {
+	vertical-align: middle;
+}
+body{
+	background-color: #fff;
+	color: #333;
+	font-size: 100%;
+	line-height: 1.5;
+	font-family: $font_family;
+}
+.container {
+	width: $video_width;
+	margin: auto;
+}
+button, input {
+	font-family: $font_family;
+	font-size: 100%;
+}
+
+.tal {
+	text-align: left;
+}
+.tar {
+	text-align: right;
+}
+.tac {
+	text-align: center;
+}
+.fwb {
+	font-weight: bold;
+}
+
+.m0 { margin: 0 }
+.m05r { margin: 0.5rem; }
+.m1r { margin: 1rem; }
+.m2r { margin: 2rem; }
+.m3r { margin: 3rem; }
+.m4r { margin: 4em; }
+.mt0 { margin-top: 0; }
+.mt05r { margin-top: 0.5rem; }
+.mt1r { margin-top: 1rem; }
+.mt2r { margin-top: 2rem; }
+.mt3r { margin-top: 3rem; }
+.mt4r { margin-top: 4rem; }
+.ml0 { margin-left: 0; }
+.ml05r { margin-left: 0.5rem; }
+.ml1r { margin-left: 1rem; }
+.ml2r { margin-left: 2rem; }
+.ml3r { margin-left: 3rem; }
+.ml4r { margin-left: 4rem; }
+.mr0 { margin-right: 0; }
+.mr05r { margin-right: 0.5rem; }
+.mr1r { margin-right: 1rem; }
+.mr2r { margin-right: 2rem; }
+.mr3r { margin-right: 3rem; }
+.mr4r { margin-right: 4rem; }
+.mb0 { margin-bottom: 0; }
+.mb05r { margin-bottom: 0.5rem; }
+.mb1r { margin-bottom: 1rem; }
+.mb2r { margin-bottom: 2rem; }
+.mb3r { margin-bottom: 3rem; }
+.mb4r { margin-bottom: 4rem; }
+
+.fzxs { font-size: x-small; }
+.fzs { font-size: small; }
+.fz70p { font-size: 70%; }
+.fz80p { font-size: 80%; }
+.fz90p { font-size: 90%; }
+.fz100p { font-size: 100%; }
+.fz110p { font-size: 110%; }
+.fz120p { font-size: 120%; }
+.fz130p { font-size: 130%; }
+.fz140p { font-size: 140%; }
+
+.w4e {
+	width: 4em;
+}
+.w3e {
+	width: 3em;
+}
+.w100p {
+	width: 100%;
+}
+.cb {
+	clear: both;
+}
+.fl {
+	float: left;
+}
+.fr {
+	float: right;
+}
+.fn {
+	float: none;
+}
+
+.btn {
+	border: none;
+	background-color: $pink;
+	border-radius: 4px;
+	padding: 16px 20px;
+	font-weight: bold;
+	text-decoration: none;
+	line-height: 1;
+	vertical-align: top;
+	font-size: 110%;
+	color: white;
+	&.cancel {
+		background-color: #CBCBCB;
+		color: #333;
+		font-size: small;
+	}
+}
+
+.error_message {
+	color: $alert;
+	&::before {
+		content: "\f071";
+		font-family: FontAwesome;
+		margin-right: 5px;
+	}
+}
+
+.spin {
+	width: 40px;
+	height: 40px;
+	background: url(../img/icon_loading.png) center no-repeat;
+	background-size: cover;
+	-webkit-animation: spin 1s infinite;
+	animation: spin 1s infinite;
+	display: inline-block;
+}
+
+@keyframes start_animation {
+	0% {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0px);
+	}
+}
+
+
+
+// tablet for commons ==============================
+
+@media only screen
+ and (min-device-width: 481px)
+ and (max-device-width: 768px) {
+	
+}
+
+
+
+
+
+
+
+
