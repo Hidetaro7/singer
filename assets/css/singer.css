@@ -19,14 +19,14 @@ body {
   color: #333;
   font-size: 100%;
   line-height: 1.5;
-  font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO"; }
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO"; }
 
 .container {
-  width: 800px;
+  width: 711px;
   margin: auto; }
 
 button, input {
-  font-family: "ヒラギノ丸ゴ Pro W4", "ヒラギノ丸ゴ Pro", "Hiragino Maru Gothic Pro", "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO";
+  font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "HG丸ｺﾞｼｯｸM-PRO", "HGMaruGothicMPRO";
   font-size: 100%; }
 
 .tal {
@@ -192,11 +192,14 @@ button, input {
   line-height: 1;
   vertical-align: top;
   font-size: 110%;
-  color: white; }
-  .btn.cancel {
+  color: white;
+  cursor: pointer; }
+  .btn.cancel, .btn[disabled] {
     background-color: #CBCBCB;
     color: #333;
     font-size: small; }
+  .btn:hover {
+    opacity: .7; }
 
 .error_message {
   color: #B41419; }
@@ -214,54 +217,123 @@ button, input {
   animation: spin 1s infinite;
   display: inline-block; }
 
+@-webkit-keyframes start_animation {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
+  100% {
+    opacity: 1;
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px); } }
+
 @keyframes start_animation {
   0% {
     opacity: 0;
-    transform: translateY(10px); }
+    -webkit-transform: translateY(10px);
+            transform: translateY(10px); }
   100% {
     opacity: 1;
-    transform: translateY(0px); } }
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px); } }
 * {
   box-sizing: border-box; }
 
 body, html {
-  margin: 0; }
+  margin: 0;
+  font-size: 90%; }
 
 .header_video_container {
-  background-color: #ccc;
+  background-color: #111;
   position: relative;
   width: 100%;
   border-bottom: 1px solid #ccc; }
 
 .header_video_container_inner {
-  height: 500px;
-  overflow: hidden;
-  margin: auto; }
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap; }
+  .header_video_container_inner > div {
+    margin: 0 20px; }
 
 .video_container {
   position: relative; }
 
 #video {
-  width: 100%; }
+  height: 350px; }
 
-.singer_video_container {
-  position: absolute;
-  top: 20px;
-  right: 20px; }
-  .singer_video_container #singer_video, .singer_video_container .singer_analyser {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    background-color: #000;
-    z-index: 2;
-    position: relative; }
-  .singer_video_container .singer_analyser {
-    position: absolute;
-    background-color: #f00;
-    top: 0;
+.video_side {
+  width: 210px;
+  flex-glow: 1; }
+  .video_side .singer_video_container {
+    position: relative;
+    /* bottom: 0;
+    left: calc( 50% - 75px ); */ }
+    .video_side .singer_video_container .singer_video_raduis {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+      left: 0;
+      top: 0; }
+    .video_side .singer_video_container #singer_video {
+      height: 100%;
+      -webkit-transform: scale(-1, 1);
+              transform: scale(-1, 1); }
+    .video_side .singer_video_container #singer_video {
+      background-color: #000;
+      z-index: 2;
+      position: relative; }
+  .video_side .video_controls {
+    padding: 10px 0 0px;
+    /* position: absolute;
+    bottom: 0;
     left: 0;
-    z-index: 1;
-    animation: amination_analyser 1s infinite linear; }
+    width: 100%; */ }
+    .video_side .video_controls .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: justify;
+          -ms-flex-pack: justify;
+              justify-content: space-between;
+      -webkit-box-align: center;
+          -ms-flex-align: center;
+              align-items: center;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap; }
+    .video_side .video_controls .circle_btn {
+      margin-top: 10px; }
+
+.singer_analyser {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background-color: #666;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  -webkit-animation: amination_analyser 1s infinite linear;
+          animation: amination_analyser 1s infinite linear; }
+
+@-webkit-keyframes amination_analyser {
+  0% {
+    opacity: .2; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: .2; } }
 
 @keyframes amination_analyser {
   0% {
@@ -298,43 +370,83 @@ body, html {
   .song_title::before {
     content: "楽曲名: "; }
 
-.btn_vo_mute {
-  width: 200px; }
+#ui_vo_mute span {
+  background-color: #da3a5d;
+  width: 45px;
+  height: 45px;
+  font-size: 20px; }
+#ui_vo_mute small::after {
+  content: "ボーカルをミュート";
+  font-size: 80%; }
 
-.rec_btn {
+.muted_vo #ui_vo_mute span {
+  background-color: #666; }
+  .muted_vo #ui_vo_mute span::after {
+    content: "";
+    width: 45px;
+    height: 3px;
+    -webkit-transform: rotate(-45deg);
+            transform: rotate(-45deg);
+    display: block;
+    background-color: #fff;
+    position: absolute; }
+.muted_vo #ui_vo_mute small::after {
+  content: "ボーカルも再生"; }
+
+.circle_btn {
+  outline: none;
   padding: 0;
   background-color: transparent;
   border: none;
   text-align: center;
   color: #DD271A;
   text-align: center;
-  position: absolute;
+  cursor: pointer;
+  /* position: absolute;
   top: -47px;
-  left: calc(50% - 4em);
+  left: calc(50% - 4em); */
   display: block;
+  -webkit-transition: .2s;
+  transition: .2s;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  flex-direction: column; }
-  .rec_btn span {
-    width: 65px;
-    height: 65px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap; }
+  .circle_btn span {
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background-color: #DD271A;
-    font-size: 30px;
-    border: 2px solid #fff;
+    font-size: 25px;
     color: white;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap; }
-  .rec_btn small {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap; }
+  .circle_btn small {
     text-align: center;
     font-size: 16px;
-    margin-top: 5px;
+    margin-left: 10px;
     line-height: 1;
-    color: #fff; }
+    color: #fff;
+    font-weight: bold; }
+  .circle_btn:hover {
+    -webkit-transform: scale(1.06);
+            transform: scale(1.06); }
 
 .btn_vo_mute_inner {
   vertical-align: top;
@@ -356,26 +468,75 @@ body, html {
     position: relative;
     top: 2px; }
 
+.rec_status_text {
+  font-size: 70%;
+  -webkit-transform: scale(1);
+          transform: scale(1);
+  color: red;
+  position: absolute;
+  z-index: 3;
+  bottom: 20px;
+  left: 0;
+  text-align: center;
+  width: 150px;
+  font-weight: bold;
+  line-height: 1;
+  vertical-align: middle;
+  -webkit-animation: switchtext 2s infinite;
+          animation: switchtext 2s infinite;
+  display: none; }
+  .rec_status_text span {
+    border: 2px solid red;
+    padding: 4px 7px;
+    background-color: rgba(0, 0, 0, 0.8); }
+  .rec_status_text i {
+    margin-right: 4px;
+    font-style: normal; }
+
+@-webkit-keyframes switchtext {
+  0% {
+    opacity: 1.0; }
+  79% {
+    opacity: 1.0; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
+
+@keyframes switchtext {
+  0% {
+    opacity: 1.0; }
+  79% {
+    opacity: 1.0; }
+  80% {
+    opacity: 0; }
+  100% {
+    opacity: 0; } }
 #ui_rec_stop {
+  /*opacity: 0;
+  width: 0;
+  height: 0;
+  transform: scale(0); */
   display: none; }
 
 .recording #ui_rec_stop {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  /* opacity: 1;
+  width: auto;
+  height: auto;
+  transform: scale(1); */ }
+.recording #ui_rec_start {
+  display: none;
+  /* opacity: 0;
+  width: 0;
+  height: 0;
+  transform: scale(0); */ }
+.recording .rec_status_text {
   display: block; }
-.recording #ui_rec_start, .recording #ui_play_only {
-  display: none; }
-
-.video_controls {
-  padding: 10px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(255, 255, 255, 0.1); }
-  .video_controls .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; }
+.recording .singer_analyser {
+  background-color: #f00; }
 
 .overlay_playback {
   position: fixed;
@@ -385,10 +546,18 @@ body, html {
   height: 100%;
   top: 0;
   left: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  -webkit-transition: .2s;
   transition: .2s;
   opacity: 0;
   z-index: -1; }
@@ -401,10 +570,17 @@ body, html {
     border: 1px solid #ccc;
     overflow: hidden; }
   .overlay_playback .post_container {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    justify-content: center;
-    align-items: stretch;
-    flex-wrap: wrap; }
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap; }
     .overlay_playback .post_container .btn {
       margin: 0 .5rem; }
   .overlay_playback #post_message {
@@ -419,20 +595,44 @@ body, html {
   opacity: 1;
   z-index: 3; }
 
+/*
+content
+--------------------------------------------
+*/
 .content {
   /* color: #312012;
   border-radius: 4px;
   background-color: #FFF6EC;
-  padding: 1rem 2rem; */
-  font-size: 80%;
+  padding: 1rem 2rem;
+  font-size: 80%; */
   margin-bottom: 1rem; }
 
+main .main_tit {
+  margin: 0 0 1rem;
+  font-size: 200%;
+  text-align: center; }
+  main .main_tit small {
+    display: block;
+    font-size: 80%; }
+main > section {
+  margin: 1rem 0 0; }
+  main > section h2 {
+    margin-top: 0;
+    text-align: center; }
+
 .member .from_member {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-bottom: 1rem; }
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: nowrap;
+      flex-wrap: nowrap;
+  margin-bottom: 0.2rem; }
 .member figure {
   margin: 0;
   text-align: center;
@@ -447,23 +647,110 @@ body, html {
 .member .members_voice {
   color: #312012;
   border-radius: 4px;
-  background-color: #FFF6EC;
+  background-color: #efefef;
   padding: .8rem 1.4rem; }
-
-.greeting {
-  background-color: #FFF5F2;
-  padding: 2rem 0; }
-  .greeting h1 {
-    font-size: 170%;
-    text-align: center; }
-
-.members {
-  background-color: #FFF9FC;
-  padding: 2rem 0; }
-
-.aboutus {
-  background-color: #FCFFDF;
-  padding: 2rem 0; }
 
 footer {
   padding: 2rem 0; }
+
+@media screen and (max-width: 480px) {
+  .header_video_container {
+    background-color: transparent; }
+
+  .header_video_container_inner {
+    height: 180px;
+    overflow: visible; }
+
+  .video_controls {
+    /* bottom: initial;
+    top: 0;
+    left: 0; */ }
+    .video_controls .container {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-pack: start;
+          -ms-flex-pack: start;
+              justify-content: flex-start;
+      -webkit-box-align: start;
+          -ms-flex-align: start;
+              align-items: flex-start;
+      -ms-flex-wrap: nowrap;
+          flex-wrap: nowrap;
+      -webkit-box-orient: vertical;
+      -webkit-box-direction: normal;
+          -ms-flex-direction: column;
+              flex-direction: column; }
+
+  .singer_video_container {
+    top: initial;
+    right: initial;
+    bottom: -50px;
+    left: calc(50% - 50px); }
+    .singer_video_container #singer_video, .singer_video_container .singer_analyser {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-color: #000;
+      z-index: 2;
+      position: relative; }
+    .singer_video_container .singer_analyser {
+      position: absolute;
+      background-color: #f00;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      -webkit-animation: amination_analyser 1s infinite linear;
+              animation: amination_analyser 1s infinite linear; }
+
+  .rec_btn {
+    top: 20px;
+    left: initial;
+    right: 10px; }
+    .rec_btn small {
+      display: none; }
+
+  .container {
+    width: 100%; }
+
+  main > section {
+    padding: 1rem 0; }
+    main > section.greeting {
+      padding-top: 3rem; }
+    main > section .container {
+      padding: 0 1rem; }
+      main > section .container h2 {
+        margin-top: 0; }
+      main > section .container.member .from_member {
+        -ms-flex-wrap: nowrap;
+            flex-wrap: nowrap; }
+        main > section .container.member .from_member figure {
+          width: 80px; }
+        main > section .container.member .from_member .members_voice {
+          width: calc(100% - 80px); }
+
+  .song_title {
+    padding: 0;
+    font-size: x-small; }
+
+  .btn_vo_mute {
+    width: 100px; }
+    .btn_vo_mute .btn_vo_mute_inner {
+      margin-top: 5px;
+      text-align: center;
+      padding: 5px;
+      border-radius: 2px;
+      border: none;
+      background-color: #E26580;
+      line-height: 1; }
+      .btn_vo_mute .btn_vo_mute_inner input {
+        margin: 0; }
+      .btn_vo_mute .btn_vo_mute_inner span {
+        display: block; }
+    .btn_vo_mute .fa {
+      display: none; }
+
+  footer {
+    padding: 1rem; } }
+
+/*# sourceMappingURL=singer.css.map */

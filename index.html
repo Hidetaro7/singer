@@ -5,44 +5,70 @@
 	<meta charset="UTF-8">
 	<meta name="description" content="">
 	<title>Document</title>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="assets/fonts/foundation-icons.css">
+	<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
 	<link rel="stylesheet" href="assets/css/singer.css">
 </head>
-<body>
+<body class="">
 	<div class="header_video_container">
 		<div class="header_video_container_inner">
 			<div class="video_container">
-				<video src="silence_vo_separate.m4v" id="video"></video>
-				<div class="singer_video_container">
-					<video autoplay id="singer_video"></video>
-					<div class="singer_analyser"></div>
-				</div>
-				
+				<video src="silence_vo_separate.m4v" class="" id="video" controls preload="auto"></video>
+				<!-- <div class="main_video_controls">
+					<div class="btn_play_pause">
+						<div class="btn_play"><i class="fi-play" aria-hidden="true"></i></div>
+						<div class="btn_pause"><i class="fi-pause" aria-hidden="true"></i></div>
+					</div>
+					<div class="video_scrub_container">
+						<div class="video_scrub_bar_container">
+							
+						</div>
+					</div>
+				</div> -->
 			</div>
-			<button class="btn_play_pause" id="ui_play_only"><i class="fa fa-play-circle" aria-hidden="true"></i></button>
-			<button class="btn_play_pause" id="ui_pause_only"><i class="fa fa-pause-circle" aria-hidden="true"></i></button>
-			<div class="video_controls">
-				<div class="container">
-					<div class="song_title">Silence</div>
-					<div class="btn_rec">
-						<button class="rec_btn" id="ui_rec_start"><span><i class="fa fa-microphone" aria-hidden="true"></i></span><small>録画して応募！</small></button>
-						<button class="rec_btn" id="ui_rec_stop"><span><i class="fa fa-square" aria-hidden="true"></i></span><small>録画をとめる</small></button></div>
-					<div class="btn_vo_mute">
-						<label class="btn_vo_mute_inner">
-							<input type="checkbox" id="ui_vocal_mute"><i class="fa fa-music" aria-hidden="true"></i><span>ボーカルをミュート</span>
-						</label>
+			<div class="video_side">
+				<div class="singer_video_container">
+					<div class="singer_video_raduis">
+						<video autoplay id="singer_video"></video>
+					</div>
+					<div class="singer_analyser"></div>
+					<div class="rec_status_text"><span><i>●</i>録画中...</span></div>
+				</div>
+
+				<div class="video_controls">
+					<div class="">
+						<!-- <div class="song_title">Silence</div> -->
+						<div class="btn_rec">
+							<button class="circle_btn" id="ui_rec_start"><span><i class="fi-microphone" aria-hidden="true"></i></span><small>録画して応募する！</small></button>
+							<button class="circle_btn" id="ui_rec_stop"><span><i class="fi-stop" aria-hidden="true"></i></span><small>録画をとめる</small></button>
+						</div>
+						<div class="btn_vo_mute">
+							<!-- <label class="btn_vo_mute_inner">
+								<input type="checkbox" id="ui_vocal_mute"><i class="fa fa-music" aria-hidden="true"></i><span>ボーカルをミュート</span>
+							</label> -->
+							<button class="circle_btn" id="ui_vo_mute"><span><i class="fi-music" aria-hidden="true"></i></span><small></small></button>
+						</div>
 					</div>
 				</div>
+
 			</div>
+			
 		</div>
 	</div>
+
+
+				
+
+
+<!-- 	<button class="btn_play_pause" id="ui_play_only"><span><i class="fi-play" aria-hidden="true"></i></span><small>再生のみ</small></button>
+			<button class="btn_play_pause" id="ui_pause_only"><i class="fa fa-pause-circle" aria-hidden="true"></i></button> -->
 
 	<main>
 		<section class="greeting">
 			<div class="container">
-				<h1 class="">女性ボーカル求む！キミのアカペラを！！</h1>
-				<p>「この曲を歌ってみたい！」<br>「このバンドでボーカリストとしてプロを目指したい！」<br>そんな<b>女性ボーカルを募集中</b>！<br>あなたのカッコいい、カワイイ、歌っているその姿をこのWebページで直接応募できます！</p>
-				<p>録画ボタンを押すとバンドの演奏が始まります、この曲を好きになってくれた方、正式なメンバーとして加入したいと思う方、一緒に歌ってください。<br><small>（いきなり送信されたり他の人に公開されたりしないので、どうぞご安心ください）</small></p>
+				<h1 class="main_tit">女性ボーカル求む！キミのアカペラ大募集！！<small>このページから直接録画・オンライン応募ができる！</small></h1>
+				<p>「この曲を歌ってみたい！」「このバンドでボーカリストとしてプロを目指したい！」そんな<b>女性ボーカルを募集中</b>！<br>あなたのカッコいい、カワイイ、歌っているその姿をこのWebページで直接応募できます！</p>
+				<p>録画ボタンを押すとバンドの演奏が始まるので歌いはじめてください。確認画面でバッチリな録画ができたら応募ボタンを押してください、私たちだけに動画が送信されます。この曲を好きになってくれた方、正式なメンバーとして加入したいと思う方、応募待ってます！<br><small>（いきなり送信されたり他の人に公開されたりしないので、どうぞご安心ください）</small></p>
 			</div>
 		</section>
 
@@ -72,7 +98,7 @@
 				<p>音楽と共に生活しているひとの人生の中で「あの時あんなことがあったな」と振り返ったときに、私たちの曲がその人のそばにいて、過ごしてきた季節や場所と一緒に思い出としてよみがえってくれる、そんな分かりやすいメロディーを残し、この世の中に発信していけたらと思っています。</p>
 				<p>活動はライブだけでなくYoutubeだけでもなく、最先端のWeb・インターネット技術と一緒にわかりやすい音楽で人を楽しませたくて生み出したい形態は様々で、色々なことを考えています。</p>
 				<p>女性ボーカリストを探しています。もしも歌詞を書きたかったら私たちの既存の曲の歌詞も書き換えてください。ここで応募するときにご自身の歌詞に変えていただいても構いません。<br>
-				一緒にすばらしい曲を演奏できる日を楽しみにしています。</p>
+				一緒にすばらしい歌とともに曲を演奏できる日を楽しみにしています。</p>
 			</div>
 		</section>
 		
@@ -81,8 +107,8 @@
 
 	<footer class="tac">
 		<p>
-		<small>楽曲は株式会社 ツクロアの著作物として管理しています。これらの楽曲や動画の無断使用を禁じます。</small><br>
-		<small>&copy; 株式会社 ツクロア</small></p>
+		<small>楽曲はすべて、株式会社ツクロアの著作物として管理しています。これらの楽曲や動画の無断使用を禁じます。</small><br>
+		<small>&copy; tuqulore Inc.</small></p>
 	</footer>
 
 	<div class="overlay_playback">
@@ -94,7 +120,7 @@
 				<textarea name="post_message" id="post_message" cols="30" rows="10" placeholder="かならずメッセージをそえてお送りください"></textarea>
 			</div>
 			<div class="post_container">
-				<button class="btn">このビデオで応募する</button>
+				<button class="btn" id="ui_post_video" disabled>このビデオで応募する</button>
 				<button class="btn cancel">もういっかい録り直す</button>
 			</div>
 			<p class="fzs">一般には公開されませんので安心して応募してくださいね。</p>

@@ -6,8 +6,9 @@ $pink: #E26580;
 $bdc: #ccc;
 $alert: #B41419;
 $rec_btn: #DD271A;
-$video_width: 800px;
-$font_family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+$video_width: 711px;
+//$font_family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Maru Gothic Pro","ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
+$font_family: "ヒラギノ角ゴ Pro W3","Hiragino Kaku Gothic Pro","HG丸ｺﾞｼｯｸM-PRO","HGMaruGothicMPRO";
 
 @mixin cf {
 	&::after {
@@ -21,7 +22,7 @@ $font_family: "ヒラギノ丸ゴ Pro W4","ヒラギノ丸ゴ Pro","Hiragino Mar
 	display: flex;
 	justify-content: $a;
 	align-items: $b;
-	flex-wrap: wrap;
+	flex-wrap: nowrap;
 	
 }
 
@@ -146,10 +147,14 @@ button, input {
 	vertical-align: top;
 	font-size: 110%;
 	color: white;
-	&.cancel {
+	cursor: pointer;
+	&.cancel, &[disabled] {
 		background-color: #CBCBCB;
 		color: #333;
 		font-size: small;
+	}
+	&:hover {
+		opacity: .7;
 	}
 }
 
