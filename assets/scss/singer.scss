@@ -42,10 +42,6 @@ body,html {
 	flex-glow: 1;
 	.singer_video_container {
 		position: relative;
-		/* bottom: 0;
-		left: calc( 50% - 75px ); */
-		//border: 1px solid #f00;
-		//box-sizing: content-box;
 		.singer_video_raduis {
 			width: 150px;
 			height: 150px;
@@ -68,12 +64,6 @@ body,html {
 	
 	.video_controls {
 		padding: 10px 0 0px;
-		/* position: absolute;
-		bottom: 0;
-		left: 0;
-		width: 100%; */
-		//text-shadow: 0 0 2px #000;
-		//background-color: rgba(#fff, .1);
 		.container {
 			@include fb(space-between);
 			&>* {
@@ -81,6 +71,46 @@ body,html {
 		}
 		.circle_btn {
 			margin-top: 10px;
+		}
+	}
+	.message_incompatible_browser {
+		display: none;
+		color: white;
+		.download_link {
+			text-align: center;
+			img {
+				height: 36px;
+			}
+			a {
+				display: block;
+				color: orange;
+				margin-top: 16px;
+				span {
+					margin-top: 0;
+					display: block;
+					text-align: center;
+				}
+			}
+		}
+	}
+}
+
+.lyrics {
+	text-align: center;
+}
+.lyrics_main {
+	font-size: 70%;
+	display: inline-block;
+	text-align: left;
+}
+
+.incompatible_brouser {
+	.video_side {
+		.singer_video_container, .video_controls {
+			display: none;
+		}
+		.message_incompatible_browser {
+			display: block;
 		}
 	}
 }
@@ -289,7 +319,7 @@ body,html {
 		background-color: #f00;
 	}
 }
-.overlay_playback {
+.overlay_playback, .overlay_sent_completed {
 	position: fixed;
 	text-align: center;
 	background-color: rgba(#fff, .95);
@@ -325,9 +355,54 @@ body,html {
 		vertical-align: bottom;
 		margin-bottom: 1rem;
 	}
+	.icon_sending {
+		display: none;
+	}
+	.now_sending {
+		display: none;
+	}
+	&.sending {
+		.icon_sending {
+			display: inline-block;
+			font-size: 22px;
+			animation: spin 2s infinite linear;
+		}
+		.now_sending {
+			display: inline-block;
+			margin-left: .6em;
+			font-size: 140%;
+		}
+		.txt_send {
+			display: none;
+		}
+		.btn.cancel {
+			display: none;
+		}
+	}
 }
+
 .playbacking {
 	.overlay_playback {
+		opacity: 1;
+		z-index: 3;
+	}
+}
+
+.overlay_sent_completed {
+	position: fixed;
+	text-align: center;
+	background-color: rgba(#fff, .95);
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	@include fb(center);
+	transition: .2s;
+	opacity: 0;
+	z-index: -1;
+}
+.sent_completed {
+	.overlay_sent_completed {
 		opacity: 1;
 		z-index: 3;
 	}

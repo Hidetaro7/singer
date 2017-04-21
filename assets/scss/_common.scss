@@ -156,6 +156,10 @@ button, input {
 	&:hover {
 		opacity: .7;
 	}
+	&.small {
+		font-size: 80%;
+		padding: 5px 14px;
+	}
 }
 
 .error_message {
@@ -175,6 +179,15 @@ button, input {
 	-webkit-animation: spin 1s infinite;
 	animation: spin 1s infinite;
 	display: inline-block;
+}
+
+@keyframes spin {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(359deg);
+	}
 }
 
 @keyframes start_animation {

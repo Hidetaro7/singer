@@ -1,3 +1,5 @@
+
+
 var video = document.querySelector("#video");
 var singer_video = document.querySelector("#singer_video");
 var confirm_playBackVideo = document.querySelector("#confirm_playBackVideo");
@@ -8,7 +10,7 @@ var ui_rec_start = document.querySelector("#ui_rec_start");
 var ui_rec_stop = document.querySelector("#ui_rec_stop");
 var ui_post_video = document.querySelector("#ui_post_video");
 var ui_overlay_close = document.querySelector(".post_container .cancel");
-var audioContext = new AudioContext();
+var audioContext;
 var gain;// AudioContext Gain Node
 var cameraReady = false, videoReady = false;
 var recorder; // レコーダーを用意、MediaRecorderインスタンス
@@ -16,6 +18,11 @@ var cameraStream; // cameraからのローカルストリームデータ
 var recordTime = 0; // 録画時間
 var recordFlg = false; // 録画を許可
 var blob; // blob video
+
+navigator.getUserMedia = ( navigator.getUserMedia ||
+                       navigator.webkitGetUserMedia ||
+                       navigator.mozGetUserMedia ||
+                       navigator.msGetUserMedia);
 
 function getAudioContext () {
 	/*Videoの左右のチャンネルを独立して管理して、ボーカルをミュートするための処理*/
@@ -44,34 +51,43 @@ function changeVocalMute () {
 		gain.gain.value = gain.value = 0;
 	}
 }
-
+var chunks = [];
 function rec_start () {
 	recordFlg = true;
+	console.log("rec_start")
 	/*ui_play_only.disabled = */ui_rec_start.disabled = true;
 	recorder = new MediaRecorder(cameraStream);
+	var iscompleted = false;
 	recorder.ondataavailable = function(evt) {
-		console.log(cameraStream);
-		blob = new Blob([evt.data], { type: evt.data.type });
-		confirm_playBackVideo.src = window.URL.createObjectURL(blob);
-		ui_post_video.disabled = false;
+		//blob = new Blob([evt.data], { type: evt.data.type });
+		chunks.push(evt.data);
+		if (recorder.state == 'inactive') {
+			/*console.log(cameraStream);
+			console.log(blob)*/
+			blob = new Blob(chunks, { type: evt.data.type });
+			confirm_playBackVideo.src = window.URL.createObjectURL(blob);
+			ui_post_video.disabled = false;
+		}
 
 	}
 	video.play();
 	video.onended = rec_stop;
 	//video.onpause = rec_stop;
+	chunks = [];
 	recorder.start();
 	$("body").addClass("recording")
 	recordTime = new Date().getTime();
 }
 
 function rec_stop () {
-	console.log("onpuase")
+	console.log("rec_stop")
 	var currentRecordTime = new Date().getTime();
 
-	if(recordFlg && currentRecordTime - recordTime > 5000) {
+	if(recordFlg && currentRecordTime - recordTime > 1000) {
 		/*ui_play_only.disabled = */ui_rec_start.disabled = false;
 		//console.log(recordTime)
 		if(recorder && recorder.state != "inactive") {
+			//console.log("recorder.stop")
 			recorder.stop();
 		}
 		video.pause();
@@ -82,29 +98,18 @@ function rec_stop () {
 }
 
 function init () {
+	audioContext = new AudioContext();
 	navigator.getUserMedia({video:true, audio:true}, cameraSuccess, cameraError);
 	// UI actions
 	ui_vocal_mute.onclick = changeVocalMute;
 
-// TODO: onplayイベントを実装する
-
-	/*ui_play_only.onclick = function () {
-		this.disabled = true;
-		video.play();
-		$("body").addClass("playing");
-	}*/
 	video.onplay = function () {
 		$("body").addClass("playing");
 	}
 	video.onpause = function () {
 		$("body").removeClass("playing");
 	}
-	/*ui_pause_only.onclick = function () {
-		video.pause();
-		video.currentTime = 0;
-		//ui_play_only.disabled = false;
-		$("body").removeClass("playing");
-	};*/
+
 	ui_rec_stop.onclick = rec_stop;
 	ui_rec_start.onclick = rec_start;
 	ui_overlay_close.onclick = function () {
@@ -114,7 +119,6 @@ function init () {
 		$("body").removeClass("playbacking");
 	}
 	ui_post_video.onclick = postVideo;// サーバーに動画を送信
-
 
 	video.oncanplay = function () { // Init Video Settings
 		videoReady = true;
@@ -126,6 +130,9 @@ function init () {
 			allReady()
 		}
 	}, 100)
+	$(".show_lyrics").on("click", function () {
+		$(".lyrics").slideToggle();
+	})
 }
 
 function postVideo () {
@@ -133,11 +140,14 @@ function postVideo () {
     formData.append('filename', 'singer_'+new Date().getTime()+'.webm');
     formData.append('blob', blob);
     formData.append('message', document.getElementById("post_message").value);
-
+    $(".overlay_playback").addClass('sending');
 	var request = new XMLHttpRequest();
     request.onreadystatechange = function () {
-        if (request.readyState == 4 && request.status == 200) {
-            console.log(request.responseText);
+        if (request.readyState == 4 && request.status == 200 && request.responseText === "Successfully_uploaded") {
+        	setTimeout(function () {
+        		$(".overlay_playback").removeClass('sending'); // 送信状態を解除
+	            $("body").removeClass("playbacking").addClass("sent_completed"); // 完了画面に移行
+        	},1000);
         }
     };
     request.open('POST', 'upload.php');
@@ -171,17 +181,25 @@ function cameraSuccess (data) {
 	data.getAudioTracks().muted = true;
 	singer_video.volume = 0;
 	singer_video.src = URL.createObjectURL(data);
-	
-	
 	createAnalyser()
 }
 
 function cameraError () {
 	alert("Webカメラのエラーが起きました、パソコンにカメラがつながっているか確認してください")
 }
+function checkBrowser () {
+	if(typeof AudioContext === "undefined" || typeof navigator.getUserMedia === 'undefined' || typeof MediaRecorder === 'undefined') {
+		$("body").addClass("incompatible_brouser");
+	}else {
+		init();
+	}
+}
+
 
 // Activate
-window.onload = init;
+window.onload = function () {
+	checkBrowser()
+}
 
 
 

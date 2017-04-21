@@ -48,9 +48,20 @@
 							</label> -->
 							<button class="circle_btn" id="ui_vo_mute"><span><i class="fi-music" aria-hidden="true"></i></span><small></small></button>
 						</div>
+
+						<button class="btn small mt1r show_lyrics">歌詞を表示する</button>
 					</div>
 				</div>
 
+				<div class="message_incompatible_browser">
+					<p><b>おっと！録画できないブラウザを使っていますね。</b></p>
+					<p class="fz80p">録画して応募するには最新のChromeブラウザかFirefoxブラウザが必要です。
+					簡単に、そして無料ですぐ使えますので、こちらのリンクからダウンロードしてください。</p>
+					<div class="download_link">
+						<a href="https://www.google.co.jp/chrome/browser/desktop/" target="_blank"><img src="assets/img/chrome_logo_2x.png" alt="Chrome"><span>Chromeのダウンロード</span></a>
+						<a href="https://www.mozilla.org/ja/firefox/new/" target="_blank"><img src="assets/img/firefox_logo.png" alt="Firefox"><span>Firefoxのダウンロード</span></a>
+					</div>
+				</div>
 			</div>
 			
 		</div>
@@ -64,6 +75,38 @@
 			<button class="btn_play_pause" id="ui_pause_only"><i class="fa fa-pause-circle" aria-hidden="true"></i></button> -->
 
 	<main>
+		<section class="lyrics container" style="display: none;">
+			<p class="lyrics_tit"><b>サイレンス</b></p>
+			<div class="lyrics_main">
+				月の灯りの中　夢を語りそして一人旅に出るのか<br>
+				何も分かりあえず　ただ時が満ちる日まで<br>
+				<br>
+				誰も聞こえないと　これで最後あなたのこと思い描くのは<br>
+				消える世界の中　ただ答え見つけたくて<br>
+				<br>
+				サイレンス　鳴り響く心の中までも<br>
+				サイレンス　最後の星空の下で<br>
+				サイレンス　誰もまだ気付きはしないと<br>
+				サイレンス　届かない<br>
+				<br>
+				朝の光の中　次の世界始まること喜びあふれて<br>
+				何が変わるのかを　傷ついたその心で<br>
+				<br>
+				サイレンス　鳴り響く心の中までも<br>
+				サイレンス　最後の星空の下で<br>
+				サイレンス　誰もまだ気付きはしないと<br>
+				サイレンス　届かない<br>
+				<br>
+				サイレンス　鳴り響く心の中までも<br>
+				サイレンス　最後の星空の下で<br>
+				サイレンス　誰もまだ気付きはしないと<br>
+				サイレンス　この心<br>
+				<br>
+				In the silence　夢を語り　そして崩れ　全て変わり<br>
+				In the silence　夢を語り　そして崩れ　全て変わり
+
+			</div>
+		</section>
 		<section class="greeting">
 			<div class="container">
 				<h1 class="main_tit">女性ボーカル求む！キミのアカペラ大募集！！<small>このページから直接録画・オンライン応募ができる！</small></h1>
@@ -120,10 +163,20 @@
 				<textarea name="post_message" id="post_message" cols="30" rows="10" placeholder="かならずメッセージをそえてお送りください"></textarea>
 			</div>
 			<div class="post_container">
-				<button class="btn" id="ui_post_video" disabled>このビデオで応募する</button>
+				<button class="btn" id="ui_post_video" disabled><i class="fa fi-loop icon_sending" aria-hidden="true"></i><span class="txt_send">このビデオで応募する</span><span class="now_sending">送信中...</span></button>
 				<button class="btn cancel">もういっかい録り直す</button>
 			</div>
 			<p class="fzs">一般には公開されませんので安心して応募してくださいね。</p>
+		</div>
+	</div>
+
+	<div class="overlay_sent_completed">
+		<div class="overlay_playback_inner">
+			<h2 class="tit">ありがとう！無事に送信しました！</h2>
+			<p>もしもこちらが「お話したい」と思ったら、一度ご連絡します！<br>このたびは本当にありがとうございました。</p>
+			<div class="post_container">
+				<button class="btn  cancel">とじる</button>
+			</div>
 		</div>
 	</div>
 

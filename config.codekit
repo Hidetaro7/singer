@@ -40,6 +40,28 @@
 		"outputPathIsSetByUser": 0,
 		"processed": 0
 		},
+	"\/assets\/img\/chrome_logo_2x.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 5666,
+		"inputAbbreviatedPath": "\/assets\/img\/chrome_logo_2x.png",
+		"outputAbbreviatedPath": "\/assets\/img\/chrome_logo_2x.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
+	"\/assets\/img\/firefox_logo.png": {
+		"fileType": 32768,
+		"ignore": 0,
+		"ignoreWasSetByUser": 0,
+		"initialSize": 28280,
+		"inputAbbreviatedPath": "\/assets\/img\/firefox_logo.png",
+		"outputAbbreviatedPath": "\/assets\/img\/firefox_logo.png",
+		"outputPathIsOutsideProject": 0,
+		"outputPathIsSetByUser": 0,
+		"processed": 0
+		},
 	"\/assets\/img\/hideki.png": {
 		"fileType": 32768,
 		"ignore": 0,
