@@ -146,7 +146,7 @@ function postVideo () {
         if (request.readyState == 4 && request.status == 200 && request.responseText === "Successfully_uploaded") {
         	setTimeout(function () {
         		$(".overlay_playback").removeClass('sending'); // 送信状態を解除
-	            $("body").removeClass("playbacking").addClass("sent_completed"); // 完了画面に移行
+	            $("body").removeClass("playbacking").addClass("sent_completed"); // 完了画面に移行する
         	},1000);
         }
     };
